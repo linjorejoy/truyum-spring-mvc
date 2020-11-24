@@ -8,7 +8,7 @@
 		alt="forandKnife" class="forkImg">
 		
 	<div class="nav-links-div">
-		 <a href="menu-item-list-admin.html" class="menu-button">Menu</a> <a
-		href="cart" class="cart-button">Cart</a>
+		 <a href="/show-menu-list-customer" class="menu-button">Menu</a> 
+		 <a	href="/show-cart?userId=1" class="cart-button">Cart</a>
 	</div>
 </header>

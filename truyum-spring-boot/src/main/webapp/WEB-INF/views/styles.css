@@ -134,6 +134,21 @@ a {
 	margin-right: auto;
 	padding-bottom: 20px;
 }
+.cart-result{
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.show-cart-table{
+	width: 50%;
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 .table-div {
 	width: 800;

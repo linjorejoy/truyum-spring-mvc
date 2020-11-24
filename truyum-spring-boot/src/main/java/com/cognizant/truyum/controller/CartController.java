@@ -33,19 +33,50 @@ public class CartController {
     }
     
     @GetMapping(value = "/show-cart")
-    public String showCart(@RequestParam long userId, ModelMap model) {
+    public String showCart(@RequestParam(required = false) long userId, ModelMap model) {
+        
         LOGGER.info("Start - showCart");
-        try {
-            List<MenuItem> cartItems = cartService.getAllCartItems(userId);
-            model.addAttribute("cart", cartItems);
-            LOGGER.info("End - showCart");
+        System.out.println("user id is " + userId);
+        if(userId != 0) {
+            try {
+                List<MenuItem> cartItems = cartService.getAllCartItems(userId);
+                System.out.println(cartItems);
+                model.addAttribute("cartItems", cartItems);
+                model.addAttribute("userId", userId);
+                LOGGER.info("End - showCart");
+                return "cart";
+            } catch (CartEmptyException e) {
+                // TODO Auto-generated catch block
+//                e.printStackTrace();
+                LOGGER.info("End - showCart");
+                return "cart-empty";
+                
+            }
+        }else {
             return "cart";
+        }
+    }
+    
+    
+    @GetMapping(value = "/remove-cart")
+    public String removeCart(@RequestParam long userId, @RequestParam long menuItemId, ModelMap model) {
+        
+        cartService.removeCartItem(userId, menuItemId);
+
+        List<MenuItem> cartItems;
+        try {
+            cartItems = cartService.getAllCartItems(userId);
+            model.addAttribute("cartItems", cartItems);
+            model.addAttribute("userId", userId);
         } catch (CartEmptyException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            LOGGER.info("End - showCart");
-            return "cart-empty";
-            
         }
+        LOGGER.info("End - showCart");
+        return "redirect:/cart";
     }
+    
+    
+    
+    
 }
