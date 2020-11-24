@@ -1,0 +1,12 @@
+
+
+<header class="header">
+	<div class="header-truyum-div">
+		<h1 class="heading-truYum">truYum</h1>
+	</div>
+	<img src='<c:url value="/WEB-INF/views/fork-knife.png" ></c:url>'
+		alt="forandKnife" class="forkImg">
+	<div class="nav-links-div">
+		<a href="menu-item-list-admin.html" class="menu-button">Menu</a>
+	</div>
+</header>

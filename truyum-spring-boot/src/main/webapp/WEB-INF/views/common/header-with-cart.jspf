@@ -1,0 +1,14 @@
+
+<header class="header">
+	<div class="header-truyum-div">
+		<h1 class="heading-truYum">truYum</h1>
+	</div>
+	<img
+		src='<c:url value="G:/my works new/JAVA/Eclipse/Case Studies/truyum-spring-mvc/src/main/webapp/WEB-INF/views/Images/fork-knife.png" ></c:url>'
+		alt="forandKnife" class="forkImg">
+		
+	<div class="nav-links-div">
+		 <a href="menu-item-list-admin.html" class="menu-button">Menu</a> <a
+		href="menu-item-list-admin.html" class="cart-button">Cart</a>
+	</div>
+</header>
