@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,6 +28,7 @@ public class MenuItemController {
 
     @Autowired
     MenuItemService menuItemDao;
+    
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuItemController.class);
 
@@ -63,15 +66,16 @@ public class MenuItemController {
     }
     
     @PostMapping(value = "edit-menu-item")
-    public String showEditMenuStatus() {
-        
+    public String showEditMenuStatus(@ModelAttribute("menuItem") MenuItem menuItem, BindingResult result) {
+        System.out.println(menuItem);
+        menuItemDao.editMenuItem(menuItem);
         return "edit-menu-item-status";
     }
     
-    
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
     

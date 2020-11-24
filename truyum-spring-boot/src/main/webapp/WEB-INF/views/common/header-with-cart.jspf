@@ -3,9 +3,7 @@
 	<div class="header-truyum-div">
 		<h1 class="heading-truYum">truYum</h1>
 	</div>
-	<img
-		src='<c:url value="G:/my works new/JAVA/Eclipse/Case Studies/truyum-spring-mvc/src/main/webapp/WEB-INF/views/Images/fork-knife.png" ></c:url>'
-		alt="forandKnife" class="forkImg">
+	<img src="https://image.flaticon.com/icons/svg/1046/1046857.svg" alt="forandKnife" class="forkImg">
 		
 	<div class="nav-links-div">
 		 <a href="/show-menu-list-customer" class="menu-button">Menu</a> 

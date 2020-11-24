@@ -4,9 +4,9 @@
 	<div class="header-truyum-div">
 		<h1 class="heading-truYum">truYum</h1>
 	</div>
-	<img src='<c:url value="/WEB-INF/views/fork-knife.png" ></c:url>'
-		alt="forandKnife" class="forkImg">
+	<img src="https://image.flaticon.com/icons/svg/1046/1046857.svg" alt="forandKnife" class="forkImg">
+
 	<div class="nav-links-div">
-		<a href="menu-item-list-admin.html" class="menu-button">Menu</a>
+		<a href="/show-menu-list-admin" class="menu-button">Menu</a>
 	</div>
 </header>

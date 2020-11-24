@@ -24,7 +24,7 @@
 						<td>Rs. ${eachitem.price}</td>
 						<td>${eachitem.active}</td>
 						<td><fmt:formatDate value="${eachitem.dateOfLaunch}"
-								pattern="dd/MM/yyyy" /></td>
+								pattern="yyyy-MM-dd" /></td>
 						<td>${eachitem.category}</td>
 						<td>${eachitem.freeDelivery}</td>
 						<td><a href="/show-edit-menu-item?menuItemId=${eachitem.id}">Edit</a></td>

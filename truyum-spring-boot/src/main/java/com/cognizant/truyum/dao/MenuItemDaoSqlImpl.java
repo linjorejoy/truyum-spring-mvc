@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +25,9 @@ public class MenuItemDaoSqlImpl implements MenuItemDao {
     @Override
     public List<MenuItem> getMenuItemListAdmin() {
         LOGGER.info("Start of getMenuItemListAdmin() in MenuItemDaoSqlImpl");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat newFormat = new SimpleDateFormat("dd/MM/yyyy");
         List<MenuItem> menuItemsList = new ArrayList<>();
         try {
             Connection connection = ConnectionHandler.getConnection();
@@ -37,7 +41,8 @@ public class MenuItemDaoSqlImpl implements MenuItemDao {
                 String name = resultSet.getString(2);
                 float price = resultSet.getFloat(3);
                 boolean active = resultSet.getInt(4) == 1;
-                Date dateOfLaunch = resultSet.getDate(5);
+                Date dateOfLaunch = dateFormat.parse(resultSet.getString(5));
+                System.out.println(dateOfLaunch);
                 String category = resultSet.getString(6);
                 boolean freeDelivery = resultSet.getInt(7) == 1;
                 MenuItem item = new MenuItem(id, name, price, active, dateOfLaunch, category, freeDelivery);
@@ -48,6 +53,9 @@ public class MenuItemDaoSqlImpl implements MenuItemDao {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
