@@ -10,7 +10,6 @@
 		
 		<div class="added-message">
 			<h3 ><c:if test="${addCartStatus}">Item added to Cart Successfully</c:if></h3>
-			
 		</div>
 		<div id="menu-item-customer-result" class="table-div">
 			<table class="table">

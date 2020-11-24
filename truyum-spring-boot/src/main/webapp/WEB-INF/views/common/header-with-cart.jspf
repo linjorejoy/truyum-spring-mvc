@@ -9,6 +9,6 @@
 		
 	<div class="nav-links-div">
 		 <a href="menu-item-list-admin.html" class="menu-button">Menu</a> <a
-		href="menu-item-list-admin.html" class="cart-button">Cart</a>
+		href="cart" class="cart-button">Cart</a>
 	</div>
 </header>
