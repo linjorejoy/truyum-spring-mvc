@@ -2,25 +2,25 @@ package com.cognizant.truyum.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.springframework.lang.NonNull;
+import org.hibernate.validator.constraints.Range;
 
 public class MenuItem {
 
     private long id;
-    
+
     @NotNull(message = "Title is Required")
     @Size(min = 2, max = 65, message = "Title should have 2 to 65 charecters")
     private String name;
-    
-    @Pattern(regexp = "^[\\d]+$")
-    @NotNull(message = "Price is required")
+
+    @Min(value = 0, message = "Price is Required" )
+    @Range(min = 1, message= "salary may not be empty or null")
     private float price;
     private boolean active;
-    
+
     private Date dateOfLaunch;
     private String category;
     private boolean freeDelivery;

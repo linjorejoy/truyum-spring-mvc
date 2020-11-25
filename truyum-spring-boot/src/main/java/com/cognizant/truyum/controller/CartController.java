@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cognizant.truyum.dao.CartEmptyException;
@@ -32,8 +33,16 @@ public class CartController {
         return "redirect:/show-menu-list-customer";
     }
     
+    
+    @PostMapping("/add-to-cart")
+    public String afterAddingToCart(@RequestParam long menuItemId, ModelMap model) {
+
+        model.addAttribute("addCartStatusMessage", "Added");
+        return "redirect:/show-menu-list-customer";
+    }
+    
     @GetMapping(value = "/show-cart")
-    public String showCart(@RequestParam(required = false) long userId, ModelMap model) {
+    public String showCart(@RequestParam long userId, ModelMap model) {
         
         LOGGER.info("Start - showCart");
         System.out.println("user id is " + userId);
@@ -57,6 +66,21 @@ public class CartController {
         }
     }
     
+    
+    @GetMapping(value = "cart")
+    public String showCart(ModelMap model) {
+        List<MenuItem> cartItems;
+        try {
+            cartItems = cartService.getAllCartItems(1);
+            model.addAttribute("cartItems", cartItems);
+            model.addAttribute("userId", 1);
+            return "cart";
+        } catch (CartEmptyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "cart";
+    }
     
     @GetMapping(value = "/remove-cart")
     public String removeCart(@RequestParam long userId, @RequestParam long menuItemId, ModelMap model) {

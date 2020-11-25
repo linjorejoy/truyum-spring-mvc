@@ -1,6 +1,6 @@
 
 <%@ include file="common/taglibs-and-head.jspf"%>
-<div class="container">
+<div class="container-my">
 	<%@ include file="common/header-with-cart.jspf"%>
 	<div class="body">
 		<h1 class="body-text-heading">Cart</h1>
@@ -25,7 +25,7 @@
 								</c:otherwise>
 								</c:choose></td>
 							<td>${menuItem.price}</td>
-							<td><a href="/remove-cart?menuItemId=${menuItem.id};userId=${userId}">Delete</a>
+							<td><a href="/remove-cart?menuItemId=${menuItem.id}&userId=${userId}">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

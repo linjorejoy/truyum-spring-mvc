@@ -1,6 +1,6 @@
 
 <%@ include file="common/taglibs-and-head.jspf"%>
-<div class="container">
+<div class="container-my">
 	<%@ include file="common/header-with-cart.jspf"%>
 
 	<div class="body">
@@ -9,8 +9,8 @@
 			<form:form class="form-edit-menu" modelAttribute="menuItem" name="menuItemForm" method="POST" action="edit-menu-item" cssClass="edit-form">
 				<form:hidden path="id"/>
 				<form:label path="name">Name</form:label><br>
-				<form:input path="name" cssClass="edit-form-name" name="title" id="title"  value="${menuItem.name}" />
-
+				<form:input path="name" cssClass="edit-form-name" name="title" id="title"  value="${menuItem.name}" /><br>
+				<form:errors path="name" cssClass="text-warning"></form:errors>
 				<table>
 					<tr class="form-table-edit-menu-row">
 						
@@ -25,7 +25,8 @@
 					</tr>
 					<tr class="form-table-edit-menu-row">
 						<td class="form-table-edit-menu">
-							<form:input path="price" value="${menuItem.price}" name="price" id="price"/>
+							<form:input path="price" type="number" value="${menuItem.price}" name="price" id="price"/><br>
+							<form:errors path="price" cssClass="text-warning"></form:errors>
 						</td>
 						<td class="form-table-edit-menu">
 							<form:radiobutton path="active" value="true" name="inStock" id="inStock"  />
@@ -34,23 +35,20 @@
 							<form:label path="active">No</form:label>
 						 </td>
 						<td class="form-table-edit-menu"> 
-							<form:input path="dateOfLaunch" type="date" name="dateOfLaunch" id="dateOfLaunch" value="${menuItem.dateOfLaunch}"/>
+							<form:input path="dateOfLaunch" name="dateOfLaunch" id="dateOfLaunch"/>
 						</td>
 						<td class="form-table-edit-menu">
-						<form:select path="category"></form:select>
-						<select name="category"
-							id="category">
-								<c:forEach var="x" items="${catogoryList}">
-									<option value="${x}">${x}</option>
-								</c:forEach>
-						</select></td>
+						<form:select path="category" >
+							<c:forEach var="x" items="${catogoryList}">
+								<option value="${x}">${x}</option>
+							</c:forEach>
+						</form:select>
 					</tr>
 				</table>
-
-				<input type="checkbox" value="${menuItem.freeDelivery}"
-					name="freeDelivery" id="freeDelivery"
-					<c:if test="${menuItem.freeDelivery}">checked</c:if>> <label>Free
-					Delivery</label><br> <input class="save-button-edit" type="submit"
+				<form:label path="freeDelivery">Free Delivery</form:label>
+				<form:checkbox path="freeDelivery" name="freeDelivery" id="freeDelivery" value="${menuItem.freeDelivery}" />
+				<br> 
+					<input class="save-button-edit" type="submit"
 					value="Save">
 			</form:form>
 		</div>

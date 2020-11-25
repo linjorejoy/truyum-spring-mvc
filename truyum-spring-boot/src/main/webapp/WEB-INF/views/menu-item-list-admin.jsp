@@ -1,13 +1,13 @@
 
 <%@ include file="common/taglibs-and-head.jspf"%>
-<div class="container">
+<div class="container-my">
 	<%@ include file="common/header.jspf"%>
 
 	<div class="body">
 		<div class="menu-item-heading">
 			<h1 class="body-text-heading" id="">Menu Items</h1>
 		</div>
-		<div id="menu-Item-List-Result" class="table-div">
+		<div id="menu-Item-List-Result" class="table-div-my">
 			<table class="table">
 				<tr>
 					<th>Name</th>

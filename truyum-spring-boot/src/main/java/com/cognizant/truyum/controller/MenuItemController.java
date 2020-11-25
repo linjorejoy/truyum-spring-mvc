@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +68,12 @@ public class MenuItemController {
     }
     
     @PostMapping(value = "edit-menu-item")
-    public String showEditMenuStatus(@ModelAttribute("menuItem") MenuItem menuItem, BindingResult result) {
+    public String showEditMenuStatus(@ModelAttribute("menuItem") @Valid MenuItem menuItem, BindingResult result) {
+        
+        if(result.hasErrors()) {
+            return "edit-menu-item";
+        }
+        
         System.out.println(menuItem);
         menuItemDao.editMenuItem(menuItem);
         return "edit-menu-item-status";

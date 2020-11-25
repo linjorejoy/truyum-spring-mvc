@@ -1,6 +1,6 @@
 
 <%@ include file="common/taglibs-and-head.jspf"%>
-<div class="container">
+<div class="container-my">
 	<%@ include file="common/header-with-cart.jspf"%>
 
 	<div class="body">
@@ -10,6 +10,7 @@
 		
 		<div class="added-message">
 			<h3 ><c:if test="${addCartStatus}">Item added to Cart Successfully</c:if></h3>
+			<h3 class="text-success">${addCartStatusMessage}</h3>
 		</div>
 		<div id="menu-item-customer-result" class="table-div">
 			<table class="table">
