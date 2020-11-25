@@ -125,6 +125,7 @@ public class CartDaoSqlImpl implements CartDao {
             } else {
                 System.out.println("Query Unsuccessful");
             }
+            
             preparedStatement.clearParameters();
 
         } catch (ClassNotFoundException e) {
