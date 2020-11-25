@@ -114,7 +114,7 @@ public class CartDaoSqlImpl implements CartDao {
             while(cartTablePrimaryKey.next()) {
                 primaryKeyFromTable = cartTablePrimaryKey.getLong(1);
             }
-            System.out.println(primaryKeyFromTable);
+//            System.out.println(primaryKeyFromTable);
             String query = "delete from cart where cart_id = ?";
 
             PreparedStatement prepareStatement = connection.prepareStatement(query);

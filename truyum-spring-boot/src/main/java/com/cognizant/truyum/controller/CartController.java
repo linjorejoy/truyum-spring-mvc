@@ -1,5 +1,6 @@
 package com.cognizant.truyum.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -45,11 +46,11 @@ public class CartController {
     public String showCart(@RequestParam long userId, ModelMap model) {
         
         LOGGER.info("Start - showCart");
-        System.out.println("user id is " + userId);
+//        System.out.println("user id is " + userId);
         if(userId != 0) {
             try {
                 List<MenuItem> cartItems = cartService.getAllCartItems(userId);
-                System.out.println(cartItems);
+                Collections.sort(cartItems);
                 model.addAttribute("cartItems", cartItems);
                 model.addAttribute("userId", userId);
                 float total = 0f;
@@ -77,6 +78,7 @@ public class CartController {
         List<MenuItem> cartItems;
         try {
             cartItems = cartService.getAllCartItems(1);
+            Collections.sort(cartItems);
             model.addAttribute("cartItems", cartItems);
             model.addAttribute("userId", 1);
             return "cart";
@@ -95,13 +97,14 @@ public class CartController {
         List<MenuItem> cartItems;
         try {
             cartItems = cartService.getAllCartItems(userId);
+            Collections.sort(cartItems);
             model.addAttribute("cartItems", cartItems);
             model.addAttribute("userId", userId);
             float total = 0f;
             for(MenuItem item : cartItems) {
                 total += item.getPrice();
             }
-            System.out.println(total);
+//            System.out.println(total);
             model.addAttribute("total", total);
         } catch (CartEmptyException e) {
             // TODO Auto-generated catch block

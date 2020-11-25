@@ -42,7 +42,7 @@ public class MenuItemDaoSqlImpl implements MenuItemDao {
                 float price = resultSet.getFloat(3);
                 boolean active = resultSet.getInt(4) == 1;
                 Date dateOfLaunch = dateFormat.parse(resultSet.getString(5));
-                System.out.println(dateOfLaunch);
+//                System.out.println(dateOfLaunch);
                 String category = resultSet.getString(6);
                 boolean freeDelivery = resultSet.getInt(7) == 1;
                 MenuItem item = new MenuItem(id, name, price, active, dateOfLaunch, category, freeDelivery);

@@ -2,13 +2,14 @@ package com.cognizant.truyum.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
 
-public class MenuItem {
+public class MenuItem implements Comparable<MenuItem>{
 
     private long id;
 
@@ -121,4 +122,20 @@ public class MenuItem {
                 + dateOfLaunch + ", category=" + category + ", freeDelivery=" + freeDelivery + "]";
     }
 
+    @Override
+    public int compareTo(MenuItem o) {
+        // TODO Auto-generated method stub
+        if(this.id == o.id) {
+            return 0;
+        }else if(this.id > o.id) {
+            return 1;
+        }
+        
+        return -1;
+    }
+
+
+
+
+    
 }

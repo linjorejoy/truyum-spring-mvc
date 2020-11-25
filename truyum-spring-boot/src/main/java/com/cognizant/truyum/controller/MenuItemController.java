@@ -3,6 +3,7 @@ package com.cognizant.truyum.controller;
 import java.nio.file.FileSystemException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -45,8 +46,9 @@ public class MenuItemController {
     @GetMapping(value = "/show-menu-list-customer")
     public String showMenuItemListCustomer(ModelMap model) throws FileSystemException {
         LOGGER.info("Start - showMenuItemListCustomer");
-
-        model.addAttribute("menuItemListCustomer", menuItemDao.getMenuItemListCustomer());
+        List<MenuItem> menuItemListAdmin = menuItemDao.getMenuItemListCustomer();
+        Collections.sort(menuItemListAdmin);
+        model.addAttribute("menuItemListCustomer", menuItemListAdmin );
         LOGGER.info("End - showMenuItemListCustomer");
 
         return "menu-item-list-customer";
@@ -74,7 +76,6 @@ public class MenuItemController {
             return "edit-menu-item";
         }
         
-        System.out.println(menuItem);
         menuItemDao.editMenuItem(menuItem);
         return "edit-menu-item-status";
     }
