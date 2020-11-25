@@ -29,7 +29,11 @@
 							</td>
 						</tr>
 					</c:forEach>
-
+					<tr>
+						<td></td>
+						<td class="cart-footer-row">Total</td>
+						<td class="cart-footer-row">${total}</td>
+					</tr>
 				</table>
 			</div>
 		</div>

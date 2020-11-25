@@ -61,12 +61,14 @@ public class CartDaoSqlImpl implements CartDao {
         double total = 0;
         try {
             Connection connection = ConnectionHandler.getConnection();
-            String query = "SELECT * FROM MENU_ITEMS WHERE ID IN (SELECT MENU_ITEMS_ID FROM CART WHERE CT_USER_ID = ?)";
+            String query = "select m.id, m.item_name, m.price, m.active, m.date_of_launch, m.category, m.free_delivery"
+                    + " from Menu_items m join cart c on m.id =  c.menu_items_id where c.ct_user_id = ?";
+//            String query = "SELECT * FROM MENU_ITEMS WHERE ID IN (SELECT MENU_ITEMS_ID FROM CART WHERE CT_USER_ID = ?)";
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setLong(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
-            int count = 0 ;
+            int count = 0;
             while (resultSet.next()) {
                 count += 1;
                 long id = resultSet.getLong(1);
@@ -81,7 +83,7 @@ public class CartDaoSqlImpl implements CartDao {
                 menuItemList.add(menuItem);
             }
             preparedStatement.clearParameters();
-            if(count == 0) {
+            if (count == 0) {
                 throw new CartEmptyException();
             }
         } catch (ClassNotFoundException e) {
@@ -103,11 +105,20 @@ public class CartDaoSqlImpl implements CartDao {
 
         try {
             Connection connection = ConnectionHandler.getConnection();
-            String query = "DELETE FROM CART WHERE MENU_ITEMS_ID = ? AND CT_USER_ID = ?";
+            String getIdQuery ="select min(cart_id) as cart_id from cart where MENU_ITEMS_ID = ? AND CT_USER_ID = ?";
+            PreparedStatement getIdStatement = connection.prepareStatement(getIdQuery);
+            getIdStatement.setLong(1, menuItemId);
+            getIdStatement.setLong(2, userId);
+            ResultSet cartTablePrimaryKey = getIdStatement.executeQuery();
+            long primaryKeyFromTable = 0;
+            while(cartTablePrimaryKey.next()) {
+                primaryKeyFromTable = cartTablePrimaryKey.getLong(1);
+            }
+            System.out.println(primaryKeyFromTable);
+            String query = "delete from cart where cart_id = ?";
 
             PreparedStatement prepareStatement = connection.prepareStatement(query);
-            prepareStatement.setLong(1, menuItemId);
-            prepareStatement.setLong(2, userId);
+            prepareStatement.setLong(1, primaryKeyFromTable);
 
             if (prepareStatement.executeUpdate() > 0) {
                 System.out.println("Query Successful");

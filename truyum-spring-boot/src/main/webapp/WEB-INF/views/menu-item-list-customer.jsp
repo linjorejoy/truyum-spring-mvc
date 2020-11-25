@@ -9,8 +9,10 @@
 		</div>
 		
 		<div class="added-message">
-			<h3 ><c:if test="${addCartStatus}">Item added to Cart Successfully</c:if></h3>
-			<h3 class="text-success">${addCartStatusMessage}</h3>
+			<c:set var="addedCart" scope="session" value="${addCartStatus}"/>
+			<c:if test="${addedCart == true}">
+				<label class="text-success">Item added to cart Successfully</label>
+			</c:if>
 		</div>
 		<div id="menu-item-customer-result" class="table-div">
 			<table class="table">

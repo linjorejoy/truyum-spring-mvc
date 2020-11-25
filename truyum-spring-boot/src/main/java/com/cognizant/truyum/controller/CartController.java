@@ -30,16 +30,16 @@ public class CartController {
         model.addAttribute("addCartStatus", true);
         
         LOGGER.info("End - addToCart");
-        return "redirect:/show-menu-list-customer";
+        return "forward:/show-menu-list-customer";
     }
     
     
-    @PostMapping("/add-to-cart")
-    public String afterAddingToCart(@RequestParam long menuItemId, ModelMap model) {
-
-        model.addAttribute("addCartStatusMessage", "Added");
-        return "redirect:/show-menu-list-customer";
-    }
+//    @PostMapping("/add-to-cart")
+//    public String afterAddingToCart(@RequestParam long menuItemId, ModelMap model) {
+//
+//        model.addAttribute("addCartStatus", true);
+//        return "redirect:/show-menu-list-customer";
+//    }
     
     @GetMapping(value = "/show-cart")
     public String showCart(@RequestParam long userId, ModelMap model) {
@@ -52,6 +52,11 @@ public class CartController {
                 System.out.println(cartItems);
                 model.addAttribute("cartItems", cartItems);
                 model.addAttribute("userId", userId);
+                float total = 0f;
+                for(MenuItem item : cartItems) {
+                    total += item.getPrice();
+                }
+                model.addAttribute("total", total);
                 LOGGER.info("End - showCart");
                 return "cart";
             } catch (CartEmptyException e) {
@@ -92,12 +97,18 @@ public class CartController {
             cartItems = cartService.getAllCartItems(userId);
             model.addAttribute("cartItems", cartItems);
             model.addAttribute("userId", userId);
+            float total = 0f;
+            for(MenuItem item : cartItems) {
+                total += item.getPrice();
+            }
+            System.out.println(total);
+            model.addAttribute("total", total);
         } catch (CartEmptyException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         LOGGER.info("End - showCart");
-        return "redirect:/cart";
+        return "forward:/cart";
     }
     
     

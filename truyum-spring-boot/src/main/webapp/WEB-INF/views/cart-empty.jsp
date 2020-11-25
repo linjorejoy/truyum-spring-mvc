@@ -1,5 +1,5 @@
 <%@ include file="common/taglibs-and-head.jspf"%>
-<div class="container">
+<div class="container-my">
 	<%@ include file="common/header-with-cart.jspf"%>
 
 	<div class="body">

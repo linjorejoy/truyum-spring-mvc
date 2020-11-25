@@ -196,6 +196,10 @@ a {
 	font-size: unset;
 }
 
+.cart-footer-row{
+	font-weight: bold;
+}
+
 .save-button-edit {
   background-color: #315496;
   border: none;
